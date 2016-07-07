@@ -18,42 +18,30 @@ class ShopSpider(CrawlSpider):
 		start_urls = ["http://www.shopping.com/products?KW={0}" .format(keyword)]
 		rules = (Rule(SgmlLinkExtractor(allow = ['\\/info']), callback=('parse_page'), follow=True),)
 
-		def parse_page(self, response):
-			sel = Selector(response)
-			sites = sel.xpath('//div[@class="contentInner  singleModelContainer "]')
-		
-			items = []
-
-			for site in sites:
-			
-				item = ShopcrawlerItem()
-
-				item['title'] = "".join(site.xpath('//div[@class="hproduct"]/h1/text()').extract())
-				item['price'] = "".join(site.xpath('//div[@class="productPriceBox"]/span/text()').extract())
-				items.append(item)
-
-			return items
-
 	else:
 		
 		start_urls = ["http://www.shopping.com/products~PG-{0}?KW={1}" .format(page_number, keyword)]
 		rules = (Rule(SgmlLinkExtractor(allow = ['\\/info']), callback=('parse_page'), follow=False),)
 
-		def parse_page(self, response):
-			sel = Selector(response)
-			sites = sel.xpath('//div[@class="contentInner  singleModelContainer "]')
+	def parse_page(self, response):
+		sel = Selector(response)
+		sites = sel.xpath('//div[@class="contentInner  singleModelContainer "]')
 		
-			items = []
+		items = []
 
-			for site in sites:
+		for site in sites:
 			
-				item = ShopcrawlerItem()
+			item = ShopcrawlerItem()
 
-				item['title'] = "".join(site.xpath('//div[@class="hproduct"]/h1/text()').extract())
-				item['price'] = "".join(site.xpath('//div[@class="productPriceBox"]/span/text()').extract())
-				items.append(item)
+			item['title'] = "".join(site.xpath('//div[@class="hproduct"]/h1/text()').extract())
+			item['price'] = "".join(site.xpath('//div[@class="productPriceBox"]/span/text()').extract())
+			items.append(item)
 
-			return items
+		return items
+
+	
+
+		
 
 
 	
