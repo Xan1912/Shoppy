@@ -11,5 +11,7 @@ import scrapy
 class ShopcrawlerItem(scrapy.Item):
     
      
-    title =scrapy.Field()
+    title = scrapy.Field()
     price = scrapy.Field()
+    
+

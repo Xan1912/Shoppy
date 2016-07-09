@@ -18,6 +18,8 @@ DOWNLOAD_HANDLERS = {
 }
 ITEM_PIPELINES = {'ShopCrawler.pipelines.ShopcrawlerPipeline' : 300,}
 
+# LOG_LEVEL = 'INFO'
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ShopCrawler (+http://www.yourdomain.com)'
